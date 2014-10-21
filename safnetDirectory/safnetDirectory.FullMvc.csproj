@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>safnetDirectoryFullMvc</RootNamespace>
-    <AssemblyName>safnetDirectoryFullMvc</AssemblyName>
+    <RootNamespace>safnetDirectory.FullMvc</RootNamespace>
+    <AssemblyName>safnetDirectory.FullMvc</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -168,6 +168,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410201755588_InitialCreate.cs" />
+    <Compile Include="Migrations\201410201755588_InitialCreate.Designer.cs">
+      <DependentUpon>201410201755588_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410201858501_EmployeeMetadata.cs" />
+    <Compile Include="Migrations\201410201858501_EmployeeMetadata.Designer.cs">
+      <DependentUpon>201410201858501_EmployeeMetadata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -237,13 +246,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\DirectoryEntryM\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201410201755588_InitialCreate.resx">
+      <DependentUpon>201410201755588_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410201858501_EmployeeMetadata.resx">
+      <DependentUpon>201410201858501_EmployeeMetadata.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

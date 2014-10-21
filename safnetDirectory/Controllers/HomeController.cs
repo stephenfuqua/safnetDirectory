@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace safnetDirectory.Controllers
+namespace safnetDirectory.FullMvc.Controllers
 {
     public class HomeController : Controller
     {

@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using safnetDirectory.Models;
+using safnetDirectory.FullMvc.Models;
 
-namespace safnetDirectory
+namespace safnetDirectory.FullMvc
 {
     public partial class Startup
     {

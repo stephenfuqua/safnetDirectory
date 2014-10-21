@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(safnetDirectory.Startup))]
-namespace safnetDirectory
+[assembly: OwinStartupAttribute(typeof(safnetDirectory.FullMvc.Startup))]
+namespace safnetDirectory.FullMvc
 {
     public partial class Startup
     {

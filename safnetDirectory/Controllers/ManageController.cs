@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using safnetDirectory.Models;
+using safnetDirectory.FullMvc.Models;
 
-namespace safnetDirectory.Controllers
+namespace safnetDirectory.FullMvc.Controllers
 {
     [Authorize]
     public class ManageController : Controller

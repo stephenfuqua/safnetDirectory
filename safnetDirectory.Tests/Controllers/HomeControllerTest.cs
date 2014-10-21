@@ -5,9 +5,9 @@ using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using safnetDirectory;
-using safnetDirectory.Controllers;
+using safnetDirectory.FullMvc.Controllers;
 
-namespace safnetDirectory.Tests.Controllers
+namespace safnetDirectory.FullMvc.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest

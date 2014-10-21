@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace safnetDirectory
+namespace safnetDirectory.FullMvc
 {
     public class BundleConfig
     {

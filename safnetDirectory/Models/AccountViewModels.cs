@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace safnetDirectory.Models
+namespace safnetDirectory.FullMvc.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
@@ -79,6 +79,27 @@ namespace safnetDirectory.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [MaxLength(100)]
+        [Display(Name = "Full name")]
+        public string FullName { get; set; }
+
+        [MaxLength(100)]
+        public string Title { get; set; }
+
+        [MaxLength(100)]
+        public string Location { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name ="Mobile number")]
+        public string MobilePhoneNumber { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Office number")]
+        public string OfficePhoneNumber { get; set; }
+
+        [Display(Name = "HR User")]
+        public bool IsHrUser { get; set; }
     }
 
     public class ResetPasswordViewModel

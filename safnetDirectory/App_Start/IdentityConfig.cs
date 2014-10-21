@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using safnetDirectory.Models;
+using safnetDirectory.FullMvc.Models;
 
-namespace safnetDirectory
+namespace safnetDirectory.FullMvc
 {
     public class EmailService : IIdentityMessageService
     {
@@ -32,8 +32,23 @@ namespace safnetDirectory
         }
     }
 
+    public interface IApplicationUserManager
+    {
+        Task<IdentityResult> CreateAsync(ApplicationUser user, string password);
+        Task<ApplicationUser> FindByIdAsync(string userId);
+        Task<string> GenerateTwoFactorTokenAsync(string userId, string twoFactorProvider);
+        Task<IdentityResult> ConfirmEmailAsync(string userId, string token);
+        Task<ApplicationUser> FindByNameAsync(string userName);
+        Task<bool> IsEmailConfirmedAsync(string userId);
+        Task<IdentityResult> ResetPasswordAsync(string userId, string token, string newPassword);
+        Task<IList<string>> GetValidTwoFactorProvidersAsync(string userId);
+        Task<IdentityResult> CreateAsync(ApplicationUser user);
+        Task<IdentityResult> AddLoginAsync(string userId, UserLoginInfo login);
+        Task<IdentityResult> AddToRoleAsync(string userId, string role);
+    }
+
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class ApplicationUserManager : UserManager<ApplicationUser>
+    public class ApplicationUserManager : UserManager<ApplicationUser>, IApplicationUserManager
     {
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
@@ -88,8 +103,19 @@ namespace safnetDirectory
         }
     }
 
+    public interface IApplicationSignInManager
+    {
+        Task SignInAsync(ApplicationUser user, bool isPersistent, bool rememberBrowser);
+        Task<SignInStatus> PasswordSignInAsync(string userName, string password, bool isPersistent, bool shouldLockout);
+        Task<bool> HasBeenVerifiedAsync();
+        Task<SignInStatus> TwoFactorSignInAsync(string provider, string code, bool isPersistent, bool rememberBrowser);
+        Task<string> GetVerifiedUserIdAsync();
+        Task<bool> SendTwoFactorCodeAsync(string provider);
+        Task<SignInStatus> ExternalSignInAsync(ExternalLoginInfo loginInfo, bool isPersistent);
+    }
+
     // Configure the application sign-in manager which is used in this application.
-    public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
+    public class ApplicationSignInManager : SignInManager<ApplicationUser, string>, IApplicationSignInManager
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)
