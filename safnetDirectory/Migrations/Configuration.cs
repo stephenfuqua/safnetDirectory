@@ -1,5 +1,8 @@
 namespace safnetDirectory.FullMvc.Migrations
 {
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using safnetDirectory.FullMvc.Controllers;
+    using safnetDirectory.FullMvc.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -27,6 +30,19 @@ namespace safnetDirectory.FullMvc.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+
+            var user = new ApplicationUser { UserName = "sysadmin@prism.com", PasswordHash = "AIw6+zyywMtXItmg6AvOzvCO7ahrwpc/gZU+oToyitf6JAkUQD3LPBPEAloEJKnvBA==", SecurityStamp = "6f7f8c31-0a70-4604-8526-d8f048e8a1b4" };
+            context.Users.AddOrUpdate(user);
+
+            var role = new IdentityRole { Name = AccountController.HR_ROLE };
+            context.Roles.AddOrUpdate();
+            context.SaveChanges();
+
+            var userRole = new IdentityUserRole { RoleId = role.Id, UserId = user.Id };
+            role.Users.Add(userRole);
+
+            context.SaveChanges();
         }
     }
 }

@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using safnetDirectory.FullMvc.Models;
+using System;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
+
+
+
 
 namespace safnetDirectory.FullMvc
 {
@@ -112,6 +112,8 @@ namespace safnetDirectory.FullMvc
         Task<string> GetVerifiedUserIdAsync();
         Task<bool> SendTwoFactorCodeAsync(string provider);
         Task<SignInStatus> ExternalSignInAsync(ExternalLoginInfo loginInfo, bool isPersistent);
+        Task<System.Security.Claims.ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user);
+        UserManager<ApplicationUser, string> UserManager { get; set; }
     }
 
     // Configure the application sign-in manager which is used in this application.

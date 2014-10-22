@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Employees";
+}
+<h2>@ViewBag.Title</h2>
+
+
+
+<div ng-controller="EmployeeCtrl">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+
+    <fieldset>
+        <legend>Search Options</legend>
+        <div class="form-group">
+            <label for="searchFullName" class="col-md-2 control-label">Full Name</label>
+            <div class="col-md-10">
+                <input type="text" id="searchFullName" ng-model="searchForm.name" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="searchTitle" class="col-md-2 control-label">Title</label>
+            <div class="col-md-10">
+                <input type="text" id="searchTitle" ng-model="searchForm.title" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="searchLocation" class="col-md-2 control-label">Location</label>
+            <div class="col-md-10">
+                <input type="text" id="searchLocation" ng-model="searchForm.location" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="searchEmail" class="col-md-2 control-label">Email</label>
+            <div class="col-md-10">
+                <input type="text" id="searchEmail" ng-model="searchForm.email" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button ng-click="searchForm.submit()">Search</button>
+            </div>
+        </div>
+    </fieldset>
+    <div style="clear: both;">
+    </div>
+    <div class="gridStyle" ng-grid="gridOptions">
+    </div>
+
+</div>
+
+<style scoped>
+    .alert {
+        /* this is a hack because the alert-danger and alert-success classes are not loading */
+        background-color: #F2DEDE;
+        border-color: #EBCCD1;
+        color: #A94442;
+    }
+
+    .gridStyle {
+        border: 1px solid rgb(212,212,212);
+        max-width: 950px;
+        height: 450px;
+        margin-top: 20px;
+    }
+</style>

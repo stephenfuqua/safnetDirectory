@@ -77,6 +77,11 @@ namespace safnetDirectory.FullMvc.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                                       
+                    //var user = await SignInManager.UserManager.FindByEmailAsync(model.Email);
+                    //var claims = await SignInManager.CreateUserIdentityAsync(user);
+                    //AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, claims);
+
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

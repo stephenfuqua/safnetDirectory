@@ -1,14 +1,34 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en" ng-app="safnetDirectory">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    <title>@ViewBag.Title - safnet Directory</title>
     @Scripts.Render("~/bundles/modernizr")
 
+
+    @Scripts.Render("~/bundles/jquery")
+
+    <script>
+        var api = {
+            employeePaging: '@Url.Action("EmployeePaging", "Home")',
+            totalNumberOfEmployess: '@Url.Action("TotalnumberOfEmployees","Home")'
+        };
+    </script>
+
+    <link type="text/css" rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+    <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="http://angular-ui.github.com/ng-grid/css/ng-grid.css">
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+    <script type="text/javascript" src="http://angular-ui.github.com/ng-grid/lib/ng-grid.debug.js"></script>
+    <script type="text/javascript" src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.2.js"></script>
+    <script type="text/javascript" src="~/App/app.js"></script>
+
+    @Styles.Render("~/Content/css")
 </head>
 <body>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -36,9 +56,6 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

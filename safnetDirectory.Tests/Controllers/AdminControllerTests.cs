@@ -1,20 +1,17 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using safnetDirectory.FullMvc.Controllers;
 using Moq;
+using safnetDirectory.FullMvc.Controllers;
 using safnetDirectory.FullMvc.Models;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 
 namespace safnetDirectory.FullMvc.Tests.Controllers
 {
     /// <summary>
-    /// Summary description for AccountControllerTests
+    /// Summary description for AdminControllerTests
     /// </summary>
     [TestClass]
-    public class AccountControllerTests
+    public class AdminControllerTests
     {
 
         private MockRepository _repo;
@@ -35,9 +32,9 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             _repo.VerifyAll();
         }
 
-        private AccountController GivenTheSystemUnderTest()
+        private AdminController GivenTheSystemUnderTest()
         {
-            return new AccountController(_mockUserManager.Object, _mockSignInManager.Object);
+            return new AdminController(_mockUserManager.Object, _mockSignInManager.Object);
         }
 
         [TestMethod]
@@ -86,7 +83,7 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
 
         private void ExpectToAssignToHrRole(bool success)
         {
-            _mockUserManager.Setup(x => x.AddToRoleAsync(It.IsAny<string>(), It.Is<string>(y => y == AccountController.HR_ROLE)))
+            _mockUserManager.Setup(x => x.AddToRoleAsync(It.IsAny<string>(), It.Is<string>(y => y == AdminController.HR_ROLE)))
                 .ReturnsAsync(new IdentityResultTss(success) as IdentityResult);
         }
         private static void ThenIWillBeRedirectedBackToHome(ActionResult result)
@@ -100,7 +97,7 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             Assert.AreEqual("Home", redirect.RouteValues["controller"], "controller value");
         }
 
-        private static ActionResult WhenIRegisterAsANewUser(RegisterViewModel viewModel, AccountController system)
+        private static ActionResult WhenIRegisterAsANewUser(RegisterViewModel viewModel, AdminController system)
         {
             var task = system.Register(viewModel);
             task.Wait();
