@@ -65,10 +65,14 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             Assert.IsNotNull(result, "result is null");
             Assert.IsNotNull(result.Data, "data is null");
 
-            var data = result.Data as List<EmployeeViewModel>;
+            dynamic data = result.Data as dynamic;
+            var employees = data.employees as List<EmployeeViewModel>;
 
-            Assert.AreEqual(10, data.Count(), "employee count");
-            Assert.AreEqual("\"Herb J. Wesson, Jr.\"", data.First().name, "first name in the list");
+            Assert.AreEqual(10, employees.Count(), "employee count");
+            Assert.AreEqual("\"Herb J. Wesson, Jr.\"", employees.First().name, "first name in the list");
+
+            var totalRecords = data.totalRecords as int?;
+            Assert.AreEqual(30017, totalRecords, "totalRecords");
         }
 
         [TestMethod]
@@ -81,10 +85,15 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             Assert.IsNotNull(result, "result is null");
             Assert.IsNotNull(result.Data, "data is null");
 
-            var data = result.Data as List<EmployeeViewModel>;
 
-            Assert.AreEqual(20, data.Count(), "employee count");
-            Assert.AreEqual("\"Herb J. Wesson, Jr.\"", data.First().name, "first name in the list");
+            dynamic data = result.Data as dynamic;
+            var employees = data.employees as List<EmployeeViewModel>;
+
+            Assert.AreEqual(20, employees.Count(), "employee count");
+            Assert.AreEqual("\"Herb J. Wesson, Jr.\"", employees.First().name, "first name in the list");
+
+            var totalRecords = data.totalRecords as int?;
+            Assert.AreEqual(30017, totalRecords, "totalRecords");
         }
 
         [TestMethod]
@@ -97,10 +106,15 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             Assert.IsNotNull(result, "result is null");
             Assert.IsNotNull(result.Data, "data is null");
 
-            var data = result.Data as List<EmployeeViewModel>;
 
-            Assert.AreEqual(10, data.Count(), "employee count");
-            Assert.AreEqual("Abdssamad Said ", data.First().name, "first name in the list");
+            dynamic data = result.Data as dynamic;
+            var employees = data.employees as List<EmployeeViewModel>;
+
+            Assert.AreEqual(10, employees.Count(), "employee count");
+            Assert.AreEqual("Abdssamad Said", employees.First().name, "first name in the list");
+
+            var totalRecords = data.totalRecords as int?;
+            Assert.AreEqual(30017, totalRecords, "totalRecords");
         }
 
         [TestMethod]
@@ -116,10 +130,15 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             Assert.IsNotNull(result, "result is null");
             Assert.IsNotNull(result.Data, "data is null");
 
-            var data = result.Data as List<EmployeeViewModel>;
 
-            Assert.AreEqual(1, data.Count(), "employee count");
-            Assert.AreEqual("Abdssamad Said", data.First().name, "first name in the list");
+            dynamic data = result.Data as dynamic;
+            var employees = data.employees as List<EmployeeViewModel>;
+
+            Assert.AreEqual(1, employees.Count(), "employee count");
+            Assert.AreEqual("Abdssamad Said", employees.First().name, "first name in the list");
+
+            var totalRecords = data.totalRecords as int?;
+            Assert.AreEqual(1, totalRecords, "totalRecords");
         }
 
         [TestMethod]
@@ -135,10 +154,15 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             Assert.IsNotNull(result, "result is null");
             Assert.IsNotNull(result.Data, "data is null");
 
-            var data = result.Data as List<EmployeeViewModel>;
 
-            Assert.AreEqual(4, data.Count(), "employee count");
-            Assert.AreEqual("Abee Elizabeth Lutz", data.First().name, "first name in the list");
+            dynamic data = result.Data as dynamic;
+            var employees = data.employees as List<EmployeeViewModel>;
+
+            Assert.AreEqual(6, employees.Count(), "employee count");
+            Assert.AreEqual("Abee Elizabeth Lutz", employees.First().name, "first name in the list");
+
+            var totalRecords = data.totalRecords as int?;
+            Assert.AreEqual(6, totalRecords, "totalRecords");
         }
 
         [TestMethod]
@@ -154,10 +178,15 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             Assert.IsNotNull(result, "result is null");
             Assert.IsNotNull(result.Data, "data is null");
 
-            var data = result.Data as List<EmployeeViewModel>;
 
-            Assert.AreEqual(10, data.Count(), "employee count");
-            Assert.AreEqual("Abbott, Jarvis", data.First().name, "first name in the list");
+            dynamic data = result.Data as dynamic;
+            var employees = data.employees as List<EmployeeViewModel>;
+
+            Assert.AreEqual(10, employees.Count(), "employee count");
+            Assert.AreEqual("Abbott, Jarvis", employees.First().name, "first name in the list");
+
+            var totalRecords = data.totalRecords as int?;
+            Assert.AreEqual(450, totalRecords, "totalRecords");
         }
 
         [TestMethod]
@@ -173,10 +202,15 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             Assert.IsNotNull(result, "result is null");
             Assert.IsNotNull(result.Data, "data is null");
 
-            var data = result.Data as List<EmployeeViewModel>;
 
-            Assert.AreEqual(10, data.Count(), "employee count");
-            Assert.AreEqual("Lee John Warren", data.First().name, "first name in the list");
+            dynamic data = result.Data as dynamic;
+            var employees = data.employees as List<EmployeeViewModel>;
+
+            Assert.AreEqual(10, employees.Count(), "employee count");
+            Assert.AreEqual("Lee John Warren", employees.First().name, "first name in the list");
+
+            var totalRecords = data.totalRecords as int?;
+            Assert.AreEqual(5659, totalRecords, "totalRecords");
         }
 
         [TestMethod]
@@ -192,10 +226,15 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             Assert.IsNotNull(result, "result is null");
             Assert.IsNotNull(result.Data, "data is null");
 
-            var data = result.Data as List<EmployeeViewModel>;
 
-            Assert.AreEqual(1, data.Count(), "employee count");
-            Assert.AreEqual("Lee Randy P", data.First().name, "first name in the list");
+            dynamic data = result.Data as dynamic;
+            var employees = data.employees as List<EmployeeViewModel>;
+
+            Assert.AreEqual(1, employees.Count(), "employee count");
+            Assert.AreEqual("Lee Randy P", employees.First().name, "first name in the list");
+
+            var totalRecords = data.totalRecords as int?;
+            Assert.AreEqual(1, totalRecords, "totalRecords");
         }
 
         [TestMethod]
@@ -210,25 +249,16 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             Assert.IsNotNull(result, "result is null");
             Assert.IsNotNull(result.Data, "data is null");
 
-            var data = result.Data as List<EmployeeViewModel>;
 
-            Assert.AreEqual(10, data.Count(), "employee count");
-            Assert.AreEqual("Lee Sharron Denise", data.First().name, "first name in the list");
+            dynamic data = result.Data as dynamic;
+            var employees = data.employees as List<EmployeeViewModel>;
+
+            Assert.AreEqual(10, employees.Count(), "employee count");
+            Assert.AreEqual("Lee Sharron Denise", employees.First().name, "first name in the list");
+
+            var totalRecords = data.totalRecords as int?;
+            Assert.AreEqual(13, totalRecords, "totalRecords");
         }
 
-        [TestMethod]
-        public void TotalNumberOfRecords()
-        {
-            var controller = GivenTheSystemUnderTest();
-
-            var result = controller.TotalNumberOfEmployees();
-
-            Assert.IsNotNull(result, "result is null");
-            Assert.IsNotNull(result.Data, "data is null");
-
-            var data = result.Data as int?;
-
-            Assert.AreEqual(30017, data, "record count");
-        }
     }
 }

@@ -70,7 +70,12 @@ namespace safnetDirectory.FullMvc.Controllers
                     .Select(x => new EmployeeViewModel { name = x.FullName, title = x.Title, location = x.Location, email = x.Email, office = x.PhoneNumber, mobile = x.MobilePhoneNumber })
                     .ToList();
 
-                return Json(users.ToList(), JsonRequestBehavior.AllowGet);
+                var data = new { 
+                    employees = users.ToList() ,
+                    totalRecords = query.Count()
+                };
+
+                return Json(data, JsonRequestBehavior.AllowGet);
             }
         }
 
