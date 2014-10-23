@@ -12,7 +12,9 @@
     <script>
         var api = {
             employeePaging: '@Url.Action("EmployeePaging", "Home")',
-            totalNumberOfEmployess: '@Url.Action("TotalnumberOfEmployees","Home")'
+            totalNumberOfEmployess: '@Url.Action("TotalnumberOfEmployees", "Home")',
+            edit: '@Url.Action("Edit", "Home")',
+            getRecord: '@Url.Action("GetRecord", "Home")'
         };
     </script>
 
@@ -30,7 +32,7 @@
 </head>
 <body>
 
-     <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -54,7 +56,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - safnet.com</p>
         </footer>
     </div>
     @RenderSection("scripts", required: false)

@@ -1,0 +1,51 @@
+﻿<div ng-controller="EditCtrl">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+
+    <input type="hidden" ng-model="editForm.id" />
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="FullName">Full name</label>
+        <div class="col-md-10">
+            <input class="form-control" ng-model="editForm.record.name" id="FullName" name="FullName" type="text" value="" required />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="Email">Email</label>
+        <div class="col-md-10">
+            <input class="form-control" ng-model="editForm.record.email" id="Email" name="Email" type="text" value="" required />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="Title">Title</label>
+        <div class="col-md-10">
+            <input class="form-control" ng-model="editForm.record.title" id="Title" name="Title" type="text" value="" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="Location">Location</label>
+        <div class="col-md-10">
+            <input class="form-control" ng-model="editForm.record.location" id="Location" name="Location" type="text" value="" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="OfficePhoneNumber">Office number</label>
+        <div class="col-md-10">
+            <input class="form-control" ng-model="editForm.record.office" id="OfficePhoneNumber" name="OfficePhoneNumber" type="text" value="" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="MobilePhoneNumber">Mobile number</label>
+        <div class="col-md-10">
+            <input class="form-control" ng-model="editForm.record.mobile" id="MobilePhoneNumber" name="MobilePhoneNumber" type="text" value="" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button ng-click="editForm.submit()">Save</button>
+        </div>
+    </div>
+    <loading></loading>
+</div>

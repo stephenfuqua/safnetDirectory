@@ -3,6 +3,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Linq;
 using Newtonsoft.Json;
+using safnetDirectory.FullMvc.Models;
+using System.Net;
 
 namespace safnetDirectory.FullMvc.Controllers
 {
@@ -27,6 +29,49 @@ namespace safnetDirectory.FullMvc.Controllers
             return View();
         }
 
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        public JsonResult GetRecord(string id)
+        {
+            using (var db = new Models.ApplicationDbContext())
+            {
+                var employee = db.Users
+                    .Where(x => x.Id == id)
+                    .Select(x => new EmployeeViewModel { id = x.Id, name = x.FullName, title = x.Title, location = x.Location, email = x.Email, office = x.PhoneNumber, mobile = x.MobilePhoneNumber })
+                    .FirstOrDefault();
+
+                return Json(employee, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public HttpStatusCodeResult Edit(EmployeeViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var db = new Models.ApplicationDbContext())
+                {
+                    var user = db.Users.FirstOrDefault(x => x.Id == model.id);
+                    user.Id = model.id;
+                    user.FullName = model.name;
+                    user.Title = model.title;
+                    user.Location = model.location;
+                    user.Email = model.email;
+                    user.PhoneNumber = model.office;
+                    user.MobilePhoneNumber = model.mobile;
+
+                    db.SaveChanges();
+
+                    return new HttpStatusCodeResult(HttpStatusCode.OK);
+                }
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ModelState.ToString());
+        }
+
+
         public ActionResult Employees()
         {
             return View();
@@ -44,7 +89,7 @@ namespace safnetDirectory.FullMvc.Controllers
 
                 if (searchModel != null)
                 {
-                    if (! string.IsNullOrWhiteSpace(searchModel.name))
+                    if (!string.IsNullOrWhiteSpace(searchModel.name))
                     {
                         // TODO: injection protection
                         query = query.Where(x => x.FullName.Contains(searchModel.name));
@@ -67,11 +112,12 @@ namespace safnetDirectory.FullMvc.Controllers
                     .OrderBy(x => x.FullName)
                     .Skip((page - 1) * pageSize)
                     .Take(pageSize)
-                    .Select(x => new EmployeeViewModel { name = x.FullName, title = x.Title, location = x.Location, email = x.Email, office = x.PhoneNumber, mobile = x.MobilePhoneNumber })
+                    .Select(x => new EmployeeViewModel { id = x.Id, name = x.FullName, title = x.Title, location = x.Location, email = x.Email, office = x.PhoneNumber, mobile = x.MobilePhoneNumber })
                     .ToList();
 
-                var data = new { 
-                    employees = users.ToList() ,
+                var data = new
+                {
+                    employees = users.ToList(),
                     totalRecords = query.Count()
                 };
 
@@ -79,25 +125,6 @@ namespace safnetDirectory.FullMvc.Controllers
             }
         }
 
-        public JsonResult TotalNumberOfEmployees()
-        {
-            using (var db = new Models.ApplicationDbContext())
-            {
-                var users = db.Users.Count();
-
-                return Json(users, JsonRequestBehavior.AllowGet);
-            }
-        }
-
     }
 
-    public class EmployeeViewModel
-    {
-        public string name { get; set; }
-        public string title { get; set; }
-        public string location { get; set; }
-        public string email { get; set; }
-        public string office { get; set; }
-        public string mobile { get; set; }
-    }
 }
