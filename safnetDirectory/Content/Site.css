@@ -68,3 +68,6 @@ textarea {
     z-index: 98;
     background: rgba(128, 128, 128, 0.50);
 }
+a.ng-binding {
+    text-decoration: dotted;
+}

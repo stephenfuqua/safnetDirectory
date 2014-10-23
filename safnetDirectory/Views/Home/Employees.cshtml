@@ -36,7 +36,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button ng-click="searchForm.submit()">Search</button>
+                <button ng-click="searchForm.submit()" class="btn btn-primary">Search</button>
             </div>
         </div>
     </fieldset>
@@ -47,3 +47,31 @@
     </div>
 
 </div>
+
+<div class="loading" id="modalPopupContainer" style="display: none; position: absolute; left: 50%; top: 50%; width: 630px; height: 450px; margin-left: -300px; margin-top: -200px; z-index: 100; box-shadow: black 3px 3px none; background-color: white; padding: 5px;">
+    <div style="" id="modalPopup">
+    </div>
+    <iframe style="width: 620px; height: 400px;" id="modalIframe"></iframe>
+    <div style="text-align: center">
+        <button onclick="closeModal()" class="btn btn-link">Close</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function closeModal() {
+        $("#modalPopup").empty();
+        $("#modalPopupContainer").hide();
+    }
+    function openForEdit(id) {
+        var url = "/Home/Edit?id=" + id;
+
+        $("#modalPopupContainer").show();
+
+        $.get(url)
+          .success(function (data) {
+              $("#modalIframe").attr('src', url);
+          });
+
+        return false;
+    }
+</script>

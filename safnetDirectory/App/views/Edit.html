@@ -1,9 +1,4 @@
-﻿@{
-    ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_ModalLayout.cshtml";
-}
-
-<div ng-controller="EditCtrl">
+﻿
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 
     <input type="hidden" ng-model="editForm.id" />
@@ -53,4 +48,3 @@
         </div>
     </div>
     <loading></loading>
-</div>
