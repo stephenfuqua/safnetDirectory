@@ -15,5 +15,19 @@ namespace safnetDirectory.FullMvc.Models
         public string email { get; set; }
         public string office { get; set; }
         public string mobile { get; set; }
+        public string edit
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(id))
+                {
+                    return "<div onclick=\"" + id + "class=\"ui-icon ui-icon-wrench\"></div>";
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
     }
 }

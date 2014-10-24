@@ -46,7 +46,7 @@
 
 </div>
 
-<div class="loading" id="modalPopupContainer" style="display: none; position: absolute; left: 50%; top: 50%; width: 630px; height: 450px; margin-left: -300px; margin-top: -200px; z-index: 100; box-shadow: black 3px 3px none; background-color: white; padding: 5px;">
+<div id="modalPopupContainer" style="display: none; position: absolute; left: 50%; top: 50%; width: 630px; height: 450px; margin-left: -300px; margin-top: -200px; z-index: 100; box-shadow: black 3px 3px none; background-color: white; padding: 5px;">
     <iframe style="width: 620px; height: 400px;" id="modalIframe"></iframe>
     <div style="text-align: center" class="background-color: silver; border-top: 1px solid black;">
         <button onclick="closeModal()" class="btn btn-link">Close</button>
@@ -59,15 +59,17 @@
         $("#modalPopupContainer").hide();
     }
     function openForEdit(id) {
-        var url = "/Home/Edit?id=" + id;
 
-        $("#modalPopupContainer").show();
+        if (id) {
+            var url = "/Home/Edit?id=" + id;
 
-        $.get(url)
-          .success(function (data) {
-              $("#modalIframe").attr('src', url);
-          });
+            $("#modalPopupContainer").show();
 
+            $.get(url)
+              .success(function (data) {
+                  $("#modalIframe").attr('src', url);
+              });
+        }
         return false;
     }
 </script>

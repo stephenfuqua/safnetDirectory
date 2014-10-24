@@ -50,8 +50,8 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             var viewModel = GivenRegistrationInformation(email, password, fullName, title, location, officeNumber, mobileNumber, false);
 
             ExpectToCreateAuser(email, password, true, fullName, title, location, officeNumber, mobileNumber);
-            ExpectToAutomateSignInOfuser();
-
+            ExpectToAssignToUserRole(true);
+            
             var system = GivenTheSystemUnderTest();
             var result = WhenIRegisterAsANewUser(viewModel, system);
 
@@ -73,7 +73,7 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
 
             ExpectToCreateAuser(email, password, true, fullName, title, location, officeNumber, mobileNumber);
             ExpectToAssignToHrRole(true);
-            ExpectToAutomateSignInOfuser();
+            ExpectToAssignToUserRole(true);
 
             var system = GivenTheSystemUnderTest();
             var result = WhenIRegisterAsANewUser(viewModel, system);
@@ -86,6 +86,13 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             _mockUserManager.Setup(x => x.AddToRoleAsync(It.IsAny<string>(), It.Is<string>(y => y == AdminController.HR_ROLE)))
                 .ReturnsAsync(new IdentityResultTss(success) as IdentityResult);
         }
+
+        private void ExpectToAssignToUserRole(bool success)
+        {
+            _mockUserManager.Setup(x => x.AddToRoleAsync(It.IsAny<string>(), It.Is<string>(y => y == AdminController.USER_ROLE)))
+                .ReturnsAsync(new IdentityResultTss(success) as IdentityResult);
+        }
+
         private static void ThenIWillBeRedirectedBackToHome(ActionResult result)
         {
             var redirect = result as RedirectToRouteResult;

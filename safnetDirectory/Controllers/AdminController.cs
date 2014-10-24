@@ -88,6 +88,8 @@ namespace safnetDirectory.FullMvc.Controllers
 
                 if (result.Succeeded)
                 {
+                    result = await UserManager.AddToRoleAsync(user.Id, USER_ROLE);
+
                     if (model.IsHrUser)
                     {
                         // TODO: handle error when the role doesn't exist
@@ -99,7 +101,7 @@ namespace safnetDirectory.FullMvc.Controllers
                             AddErrors(result);
                         }
                     }
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -123,5 +125,7 @@ namespace safnetDirectory.FullMvc.Controllers
             }
         }
 
+
+        public const string USER_ROLE = "Users";
     }
 }

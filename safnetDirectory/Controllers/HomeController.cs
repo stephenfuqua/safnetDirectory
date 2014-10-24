@@ -5,11 +5,14 @@ using System.Linq;
 using Newtonsoft.Json;
 using safnetDirectory.FullMvc.Models;
 using System.Net;
+using System.Threading;
+using System.Security.Claims;
 
 namespace safnetDirectory.FullMvc.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize(Roles = AdminController.USER_ROLE)]
         public ActionResult Index()
         {
             return View();
@@ -29,12 +32,14 @@ namespace safnetDirectory.FullMvc.Controllers
             return View();
         }
 
+        [Authorize(Roles=AdminController.HR_ROLE)]
         public ActionResult Edit()
         {          
 
             return View();
         }
 
+        [Authorize(Roles = AdminController.HR_ROLE)]
         public JsonResult GetRecord(string id)
         {
             using (var db = new Models.ApplicationDbContext())
@@ -72,7 +77,7 @@ namespace safnetDirectory.FullMvc.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest, ModelState.ToString());
         }
 
-
+        [Authorize(Roles=AdminController.USER_ROLE)]
         public ActionResult Employees()
         {
             return View();
@@ -121,6 +126,15 @@ namespace safnetDirectory.FullMvc.Controllers
                     employees = users.ToList(),
                     totalRecords = query.Count()
                 };
+
+
+                var claimsIdentity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
+                if (!claimsIdentity.Claims.Any(x => x.Value == AccountController.HR_ROLE))
+                {
+                    // this user is not an HR user and cannot edit records
+                    data.employees.ForEach(x => x.id = string.Empty);
+                }
+                
 
                 return Json(data, JsonRequestBehavior.AllowGet);
             }

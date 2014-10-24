@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using safnetDirectory;
 using safnetDirectory.FullMvc.Controllers;
+using safnetDirectory.FullMvc.Models;
 
 namespace safnetDirectory.FullMvc.Tests.Controllers
 {
@@ -93,7 +94,7 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             Assert.AreEqual("\"Herb J. Wesson, Jr.\"", employees.First().name, "first name in the list");
 
             var totalRecords = data.totalRecords as int?;
-            Assert.AreEqual(30017, totalRecords, "totalRecords");
+            Assert.AreEqual(30018, totalRecords, "totalRecords");
         }
 
         [TestMethod]
