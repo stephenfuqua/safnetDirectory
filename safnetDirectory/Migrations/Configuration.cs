@@ -1,46 +1,49 @@
+using Microsoft.AspNet.Identity;
+
 namespace safnetDirectory.FullMvc.Migrations
 {
     using Microsoft.AspNet.Identity.EntityFramework;
     using safnetDirectory.FullMvc.Controllers;
     using safnetDirectory.FullMvc.Models;
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<safnetDirectory.FullMvc.Models.ApplicationDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "safnetDirectory.FullMvc.Models.ApplicationDbContext";
         }
 
         protected override void Seed(safnetDirectory.FullMvc.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            context.Configuration.LazyLoadingEnabled = true;
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            if (!roleManager.RoleExists(AdminController.HR_ROLE))
+            {
+                roleManager.Create(new IdentityRole(AdminController.HR_ROLE));
+            }
+            if (!roleManager.RoleExists(AdminController.USER_ROLE))
+            {
+                roleManager.Create(new IdentityRole(AdminController.USER_ROLE));
+            }
+
+            var user = new ApplicationUser { UserName = "sysadmin@prism.com" };
 
 
-            var user = new ApplicationUser { UserName = "sysadmin@prism.com", PasswordHash = "AIw6+zyywMtXItmg6AvOzvCO7ahrwpc/gZU+oToyitf6JAkUQD3LPBPEAloEJKnvBA==", SecurityStamp = "6f7f8c31-0a70-4604-8526-d8f048e8a1b4" };
-            context.Users.AddOrUpdate(user);
+            if (userManager.FindByName("sysadmin@prism.com") == null)
+            {
+                var result = userManager.Create(user, "Sys.admin9");
 
-            var role = new IdentityRole { Name = AccountController.HR_ROLE };
-            context.Roles.AddOrUpdate();
-            context.SaveChanges();
-
-            var userRole = new IdentityUserRole { RoleId = role.Id, UserId = user.Id };
-            role.Users.Add(userRole);
+                if (result.Succeeded)
+                {
+                    userManager.AddToRole(user.Id, AdminController.HR_ROLE);
+                    userManager.AddToRole(user.Id, AdminController.USER_ROLE);
+                }
+            }
 
             context.SaveChanges();
         }

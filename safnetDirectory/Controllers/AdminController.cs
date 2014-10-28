@@ -1,21 +1,19 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using safnetDirectory.FullMvc.Models;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using safnetDirectory.FullMvc.Models;
 
 namespace safnetDirectory.FullMvc.Controllers
 {
     [Authorize]
     public class AdminController : Controller
     {
+
         public const string HR_ROLE = "HR User";
+        public const string USER_ROLE = "General User";
+
 
         private IApplicationUserManager _userManager;
 
@@ -124,8 +122,5 @@ namespace safnetDirectory.FullMvc.Controllers
                 ModelState.AddModelError("", error);
             }
         }
-
-
-        public const string USER_ROLE = "Users";
     }
 }

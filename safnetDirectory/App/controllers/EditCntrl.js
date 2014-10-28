@@ -4,7 +4,6 @@
     $scope.editForm = {
         submit: function () {
             $log.info('submitting edit form');
-            debugger;
             $scope.loading = true;
 
             $http.post(api.edit, JSON.stringify($scope.editForm.record), { headers: { 'Content-Type': 'application/json' } })

@@ -176,7 +176,7 @@ namespace safnetDirectory.FullMvc.Controllers
                     if (model.IsHrUser)
                     {
                         // TODO: the role doesn't actually exist yet
-                        result = await UserManager.AddToRoleAsync(user.Id, HR_ROLE);
+                        result = await UserManager.AddToRoleAsync(user.Id, AdminController.HR_ROLE);
 
                         if (!result.Succeeded)
                         {
@@ -490,6 +490,5 @@ namespace safnetDirectory.FullMvc.Controllers
         }
         #endregion
 
-        public const string HR_ROLE = "HR User";
     }
 }

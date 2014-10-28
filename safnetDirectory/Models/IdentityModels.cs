@@ -22,6 +22,9 @@ namespace safnetDirectory.FullMvc.Models
         [DataType(DataType.PhoneNumber)]
         public string MobilePhoneNumber { get; set; }
 
+        [MaxLength(100)]
+        public string Manager { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

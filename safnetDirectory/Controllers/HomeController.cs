@@ -10,6 +10,7 @@ using System.Security.Claims;
 
 namespace safnetDirectory.FullMvc.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         [Authorize(Roles = AdminController.USER_ROLE)]
@@ -129,7 +130,7 @@ namespace safnetDirectory.FullMvc.Controllers
 
 
                 var claimsIdentity = Thread.CurrentPrincipal.Identity as ClaimsIdentity;
-                if (!claimsIdentity.Claims.Any(x => x.Value == AccountController.HR_ROLE))
+                if (!claimsIdentity.Claims.Any(x => x.Value == AdminController.HR_ROLE))
                 {
                     // this user is not an HR user and cannot edit records
                     data.employees.ForEach(x => x.id = string.Empty);

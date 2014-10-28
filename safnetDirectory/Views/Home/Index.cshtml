@@ -43,7 +43,8 @@
     <loading></loading>
     <div class="gridStyle" ng-grid="gridOptions">
     </div>
-
+    <!-- TODO: secure this by moving to menu, with menu supplied by service call that can inspect claims-->
+    @Html.ActionLink("Add new user", "Register","Admin")
 </div>
 
 <div id="modalPopupContainer" style="display: none; position: absolute; left: 50%; top: 50%; width: 630px; height: 450px; margin-left: -300px; margin-top: -200px; z-index: 100; box-shadow: black 3px 3px none; background-color: white; padding: 5px;">

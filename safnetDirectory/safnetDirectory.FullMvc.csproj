@@ -197,6 +197,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App\views\Edit.html" />
+    <None Include="Properties\PublishProfiles\safnetDirectory %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\safnetDirectory.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\httpLoader.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
