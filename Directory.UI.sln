@@ -18,13 +18,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "safnetDirectory.FullMvc", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "safnetDirectory.FullMvc.Tests", "safnetDirectory.Tests\safnetDirectory.FullMvc.Tests.csproj", "{A8B8C5F8-855A-4C38-8798-302D92792307}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1355F403-E1D1-416D-B012-6825CB699EAA}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{D2E14226-B9C6-4260-9615-C348B6600714}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
