@@ -1,49 +1,4 @@
-﻿var app = angular.module('safnetDirectory', ['ngGrid', 'ui.bootstrap'], function ($httpProvider) {
-    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-
-    /**
-     * The workhorse; converts an object to x-www-form-urlencoded serialization.
-     * @param {Object} obj
-     * @return {String}
-     * 
-     * http://victorblog.com/2012/12/20/make-angularjs-http-service-behave-like-jquery-ajax/
-     */
-    var param = function (obj) {
-        var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
-
-        for (name in obj) {
-            value = obj[name];
-
-            if (value instanceof Array) {
-                for (i = 0; i < value.length; ++i) {
-                    subValue = value[i];
-                    fullSubName = name + '[' + i + ']';
-                    innerObj = {};
-                    innerObj[fullSubName] = subValue;
-                    query += param(innerObj) + '&';
-                }
-            }
-            else if (value instanceof Object) {
-                for (subName in value) {
-                    subValue = value[subName];
-                    fullSubName = name + '[' + subName + ']';
-                    innerObj = {};
-                    innerObj[fullSubName] = subValue;
-                    query += param(innerObj) + '&';
-                }
-            }
-            else if (value !== undefined && value !== null)
-                query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
-        }
-
-        return query.length ? query.substr(0, query.length - 1) : query;
-    };
-
-    // Override $http service's default transformRequest
-    $httpProvider.defaults.transformRequest = [function (data) {
-        return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
-    }];
-});
+﻿var app = angular.module('safnetDirectory', ['ngGrid', 'ui.bootstrap']);
 
 app.config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
@@ -71,7 +26,7 @@ app.controller('EditCtrl', function ($scope, $http, $location, $log) {
     $scope.editForm = {
         submit: function () {
             $log.info('submitting edit form');
-            debugger;
+            
             $scope.loading = true;
 
             $http.post(api.edit, JSON.stringify($scope.editForm.record), { headers: { 'Content-Type': 'application/json' } })
@@ -147,11 +102,21 @@ app.controller('EmployeeCtrl', function ($scope, $http, $modal) {
     };
 
     $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+        searchText = searchText || { name: "", location: "", title: "", email: "" };
+
 
         $scope.loading = true;
 
         setTimeout(function () {
-            $http.get(api.employeePaging, { params: { pageSize: pageSize, page: page, searchText: searchText } })
+            var params = {
+                pageSize: pageSize,
+                page: page,
+                name: searchText.name,
+                location: searchText.location,
+                title: searchText.title,
+                email: searchText.email
+            };
+            $http.get(api.employeePaging, { params: params })
                 .success(function (data) {
                     $scope.myData = data.employees;
                     $scope.totalServerItems = data.totalRecords;
@@ -168,7 +133,11 @@ app.controller('EmployeeCtrl', function ($scope, $http, $modal) {
         }, 100);
     };
 
-    $scope.showErrorMessage = function (data) {
+    var showErrorMessage = $scope.showErrorMessage = function (data) {
+        data = data || "";
+
+        console.error(data);
+
         var titleMatches = data.match(/<title[^>]*>([^<]+)<\/title>/)
         if (titleMatches) {
             var title = titleMatches[1];
@@ -215,4 +184,4 @@ app.controller('EmployeeCtrl', function ($scope, $http, $modal) {
     };
 
 
-});
+});

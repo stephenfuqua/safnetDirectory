@@ -1,8 +1,7 @@
 namespace safnetDirectory.FullMvc.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class EmployeeMetadata : DbMigration
     {
         public override void Up()

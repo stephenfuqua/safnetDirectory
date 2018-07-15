@@ -4,26 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Prism Directory</title>
-    @Scripts.Render("~/bundles/modernizr")
 
 
     @Scripts.Render("~/bundles/jquery")
 
     <script>
         var api = {
-            employeePaging: '@Url.Action("EmployeePaging", "Home")',
-            totalNumberOfEmployess: '@Url.Action("TotalnumberOfEmployees", "Home")',
-            edit: '@Url.Action("Edit", "Home")',
-            getRecord: '@Url.Action("GetRecord", "Home")'
+            employeePaging: '@Url.Content("~/api/employee")',
+            edit: '@Url.Content("~/api/employee")',
+            getRecord: '@Url.Content("~/api/employee")'
         };
     </script>
 
     <link type="text/css" rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
     <link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="http://angular-ui.github.com/ng-grid/css/ng-grid.css">
+    <link type="text/css" rel="stylesheet" href="~/Content/ng-grid.css">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
-    <script type="text/javascript" src="http://angular-ui.github.com/ng-grid/lib/ng-grid.debug.js"></script>
+    <script type="text/javascript" src="~/Scripts/ng-grid.js"></script>
     <script type="text/javascript" src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.2.js"></script>
     <script type="text/javascript" src="~/App/app.js"></script>
 
@@ -57,7 +55,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - safnet.com</p>
+            <p>&copy; 2014-2018, Stephen A. Fuqua. <a href="https://github.com/stephenfuqua/safnetDirectory/blob/master/LICENSE">MIT License</a>.</p>
         </footer>
     </div>
     @RenderSection("scripts", required: false)
