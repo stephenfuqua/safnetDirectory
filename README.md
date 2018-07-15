@@ -1,4 +1,4 @@
-safnetDirectory
+safnet-directory
 ===============
 
 This project originally started as a "homework assignment" for a job interview in 2014. I was asked to throw together some code for the following user stories:
