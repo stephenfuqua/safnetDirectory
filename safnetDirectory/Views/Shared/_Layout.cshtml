@@ -4,17 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Prism Directory</title>
-    @Scripts.Render("~/bundles/modernizr")
 
 
     @Scripts.Render("~/bundles/jquery")
 
     <script>
         var api = {
-            employeePaging: '@Url.Action("EmployeePaging", "Home")',
-            totalNumberOfEmployess: '@Url.Action("TotalnumberOfEmployees", "Home")',
-            edit: '@Url.Action("Edit", "Home")',
-            getRecord: '@Url.Action("GetRecord", "Home")'
+            employeePaging: '@Url.Content("~/api/employee")',
+            edit: '@Url.Content("~/api/employee")',
+            getRecord: '@Url.Content("~/api/employee")'
         };
     </script>
 

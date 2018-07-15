@@ -12,10 +12,9 @@
 
     <script>
         var api = {
-            employeePaging: '@Url.Action("EmployeePaging", "Home")',
-            totalNumberOfEmployess: '@Url.Action("TotalnumberOfEmployees", "Home")',
-            edit: '@Url.Action("Edit", "Home")',
-            getRecord: '@Url.Action("GetRecord", "Home")'
+            employeePaging: '@Url.Content("~/api/employee")',
+            edit: '@Url.Content("~/api/employee")',
+            getRecord: '@Url.Content("~/api/employee")'
         };
     </script>
 
