@@ -3,6 +3,7 @@ using System.Web.Routing;
 
 namespace safnetDirectory.FullMvc
 {
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)

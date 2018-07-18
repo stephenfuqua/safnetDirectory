@@ -2,6 +2,7 @@
 
 namespace safnetDirectory.FullMvc
 {
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public class BundleConfig
     {
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862

@@ -4,6 +4,7 @@ using System.Web.Routing;
 
 namespace safnetDirectory.FullMvc
 {
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()

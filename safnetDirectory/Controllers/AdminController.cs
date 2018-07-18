@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using safnetDirectory.FullMvc.Identity;
 using safnetDirectory.FullMvc.Models;
 using System.Threading.Tasks;
 using System.Web;

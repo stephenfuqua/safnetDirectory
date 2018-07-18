@@ -1,7 +1,8 @@
-namespace safnetDirectoryFullMvc.Migrations
-{
-    using System.Data.Entity.Migrations;
+using System.Data.Entity.Migrations;
 
+namespace safnetDirectory.FullMvc.Migrations
+{
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public partial class InitialCreate : DbMigration
     {
         public override void Up()
