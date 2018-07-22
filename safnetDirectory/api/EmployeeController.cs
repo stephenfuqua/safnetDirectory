@@ -1,4 +1,5 @@
-﻿using safnetDirectory.FullMvc.Controllers;
+﻿using System;
+using safnetDirectory.FullMvc.Controllers;
 using safnetDirectory.FullMvc.Data;
 using safnetDirectory.FullMvc.Models;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace safnetDirectory.FullMvc.api
 
         public EmployeeController(IDbContext dbContext)
         {
-            _dbContext = dbContext;
+            _dbContext = dbContext ?? throw new ArgumentNullException();
         }
 
 
@@ -24,8 +25,11 @@ namespace safnetDirectory.FullMvc.api
         {
             var employee = _dbContext.Users
                 .Where(x => x.Id == id)
+                .AsEnumerable()
                 .Select(Map)
                 .FirstOrDefault();
+
+            if (employee == null) return NotFound();
 
             return Ok(employee);
         }
@@ -60,12 +64,14 @@ namespace safnetDirectory.FullMvc.api
                 .OrderBy(x => x.Id)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
-                .Select(x => new EmployeeViewModel { id = x.Id, name = x.FullName, title = x.Title, location = x.Location, email = x.Email, office = x.PhoneNumber, mobile = x.MobilePhoneNumber });
+                .AsEnumerable()
+                .Select(Map)
+                .OrderBy(x => x.name);
 
             var data = new EmployeeList
             {
                 TotalRecords = _dbContext.Users.Count(),
-                Employees = users.ToList().OrderBy(x => x.name)
+                Employees = users
             };
 
             var claimsIdentity = User.Identity as ClaimsIdentity;
@@ -89,13 +95,14 @@ namespace safnetDirectory.FullMvc.api
         [Authorize(Roles = AdminController.HR_ROLE)]
         public IHttpActionResult Post([FromBody] EmployeeViewModel model)
         {
+            if (model == null) return BadRequest();
+
             if (ModelState.IsValid)
             {
                 var user = _dbContext.Users.FirstOrDefault(x => x.Id == model.id);
 
-                // TODO: null handling
+                if (user == null) return NotFound();
 
-                user.Id = model.id;
                 user.FullName = model.name;
                 user.Title = model.title;
                 user.Location = model.location;

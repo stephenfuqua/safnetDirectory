@@ -190,7 +190,10 @@
     <Reference Include="System.Net.Http.WebRequest" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="api\EmployeeControllerTests.cs" />
+    <Compile Include="api\EmployeeControllerTests\WhenConstructingTheController.cs" />
+    <Compile Include="api\EmployeeControllerTests\WhenGettingASpecificResource.cs" />
+    <Compile Include="api\EmployeeControllerTests\WhenGettingPagedSearchResults.cs" />
+    <Compile Include="api\EmployeeControllerTests\WhenUpdatingAResource.cs" />
     <Compile Include="Controllers\AdminControllerTests.cs" />
     <Compile Include="Controllers\HomeControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

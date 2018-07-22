@@ -3,19 +3,19 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Web.Http.Results;
-using NUnit.Framework;
-using Moq;
-using safnetDirectory.FullMvc.Controllers;
-using safnetDirectory.FullMvc.Models;
 using FluentAssertions;
 using MockQueryable.Moq;
+using Moq;
+using NUnit.Framework;
 using safnetDirectory.FullMvc.api;
+using safnetDirectory.FullMvc.Controllers;
 using safnetDirectory.FullMvc.Data;
+using safnetDirectory.FullMvc.Models;
 
-namespace safnetDirectory.FullMvc.Tests.api
+namespace safnetDirectory.FullMvc.Tests.api.EmployeeControllerTests
 {
     [TestFixture]
-    public class EmployeeControllerTests
+    public class WhenGettingPagedSearchResults
     {
         private EmployeeController _controller;
         private Mock<IDbContext> _mockDbContext;
