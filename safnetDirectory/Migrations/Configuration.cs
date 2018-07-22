@@ -1,21 +1,22 @@
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using safnetDirectory.FullMvc.Controllers;
+using safnetDirectory.FullMvc.Data;
+using safnetDirectory.FullMvc.Models;
+using System.Data.Entity.Migrations;
 
 namespace safnetDirectory.FullMvc.Migrations
 {
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using safnetDirectory.FullMvc.Controllers;
-    using safnetDirectory.FullMvc.Models;
-    using System.Data.Entity.Migrations;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<safnetDirectory.FullMvc.Models.ApplicationDbContext>
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "safnetDirectory.FullMvc.Models.ApplicationDbContext";
+            ContextKey = "safnetDirectory.FullMvc.Data.ApplicationDbContext";
         }
 
-        protected override void Seed(safnetDirectory.FullMvc.Models.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             context.Configuration.LazyLoadingEnabled = true;
 
@@ -47,5 +48,7 @@ namespace safnetDirectory.FullMvc.Migrations
 
             context.SaveChanges();
         }
+
+
     }
 }

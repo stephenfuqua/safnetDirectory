@@ -1,4 +1,6 @@
-﻿namespace safnetDirectory.FullMvc.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace safnetDirectory.FullMvc.Models
 {
 
     public class EmployeeViewModel
@@ -10,18 +12,18 @@
         public string email { get; set; }
         public string office { get; set; }
         public string mobile { get; set; }
+
         public string edit
         {
             get
             {
                 if (!string.IsNullOrWhiteSpace(id))
                 {
+                    // TODO: This is terrible. used by Razor
                     return "<div onclick=\"" + id + "class=\"ui-icon ui-icon-wrench\"></div>";
                 }
-                else
-                {
-                    return "";
-                }
+
+                return "";
             }
         }
     }

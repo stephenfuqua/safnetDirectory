@@ -1,16 +1,17 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.AspNet.Identity;
+using NUnit.Framework;
 using Moq;
 using safnetDirectory.FullMvc.Controllers;
 using safnetDirectory.FullMvc.Models;
 using System.Web.Mvc;
+using safnetDirectory.FullMvc.Identity;
 
 namespace safnetDirectory.FullMvc.Tests.Controllers
 {
     /// <summary>
     /// Summary description for AdminControllerTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class AdminControllerTests
     {
 
@@ -18,7 +19,7 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
         private Mock<IApplicationSignInManager> _mockSignInManager;
         private Mock<IApplicationUserManager> _mockUserManager;
 
-        [TestInitialize]
+         [SetUp]
         public void TestInitialize()
         {
             _repo = new MockRepository(MockBehavior.Strict);
@@ -26,7 +27,7 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             _mockUserManager = _repo.Create<IApplicationUserManager>();
         }
 
-        [TestCleanup]
+         [TearDown]
         public void TestCleanup()
         {
             _repo.VerifyAll();
@@ -37,7 +38,7 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
             return new AdminController(_mockUserManager.Object, _mockSignInManager.Object);
         }
 
-        [TestMethod]
+         [Test]
         public void PostValidRegistrationInformationAndUserSuccessfullyCreated()
         {
             var email = "president@whitehouse.gov";
@@ -59,7 +60,7 @@ namespace safnetDirectory.FullMvc.Tests.Controllers
         }
 
 
-        [TestMethod]
+         [Test]
         public void PostValidHruserRegistrationInformationAndUserSuccessfullyCreated()
         {
             var email = "president@whitehouse.gov";

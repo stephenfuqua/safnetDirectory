@@ -1,7 +1,8 @@
+using System.Data.Entity.Migrations;
+
 namespace safnetDirectory.FullMvc.Migrations
 {
-    using System.Data.Entity.Migrations;
-
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public partial class EmployeeMetadata : DbMigration
     {
         public override void Up()
